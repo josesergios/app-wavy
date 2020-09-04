@@ -7,7 +7,7 @@ module.exports.dadosSMS = (event) => {
 
         let endpoint = "https://api-messaging.movile.com/v1/send-sms"
 
-        const params = { 
+        const headers = { 
             headers: {
                 "Content-Type": "application/json",
                 "authenticationtoken": event.queryStringParameters.token,
@@ -17,7 +17,7 @@ module.exports.dadosSMS = (event) => {
         axios.post('https://api-messaging.movile.com/v1/send-sms', {
             destination: event.body.to.replace(/[^\d]/g, ""),
             messageText: event.body.text 
-    }, params)
+    }, headers)
         .then(function(res){
             // console.log("Sucesso!")
             console.log(res.data)
